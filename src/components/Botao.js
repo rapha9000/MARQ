@@ -1,10 +1,12 @@
+import { useLinkProps } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet,View,Text, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 
 export default props=>{
     return (
-        <TouchableOpacity>
+        <TouchableOpacity 
+            onPress={props.onPress}>
             <View style ={styles.container}>
                 <View style={styles.buttonContainer}>
                     <Text >

@@ -3,12 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Inicial from './src/screens/Inicial';
 import Login from './src/screens/Login';
+import Index from "./Index"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Login Email='MARQ'/>
-    </View>
+   <Index/>
   );
 }
 

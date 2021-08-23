@@ -5,26 +5,44 @@ import {
     View,
     SafeAreaView, 
 } from 'react-native'
-import Button from '../components/Button'
+import PassoStack from '../../navigation/PassoStack'
+import Botao from '../components/Botao'
 
 export default props=>{
     return(
-        <SafeAreaView>
-            <View style = {styles.container}>
-                <Text style={styles.Texto}>
-                    Fila Virtual!
-                </Text>
-                <View style={styles.componentes}>
-                <Button titulo='Cadastro' />
-                {/* </View> */}
-                {/* <View style={{padding:10, */}
-                    {/* width:30}}> */}
-                <Button titulo='Entrar' />
+            <SafeAreaView>
+                <View style = {styles.container}>
+                    <Text style={styles.Texto}>
+                        Fila Virtual!
+                    </Text>
+                    <View style={styles.componentes}>
+                    <Botao titulo='Cadastro' />
+                    {/* </View> */}
+                    {/* <View style={{padding:10, */}
+                        {/* width:30}}> */}
+                        
+                    {props.avancar
+                        ?   <Botao
+                                titulo='Entrar'
+                                onPress={() => {
+                                    props.navigation.navigate(
+                                        props.avancar,
+                                        props.avancarParams
+                                    )
+                                }}
+                            />
+                        : false
+                    }
+                    </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>  
     )
 }
+
+
+
+
+
 
 const styles = StyleSheet.create({
     container:{
