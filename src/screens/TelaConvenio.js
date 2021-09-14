@@ -10,10 +10,11 @@ import {
 } from 'react-native'
 import { CheckBox } from 'react-native-elements'
 import Button from '../components/Botao'
-import usuarios from '../../database/Usuarios'
+import usuarios from '../database/Usuarios'
 import MaterialButtonViolet from '../components/MaterialButtonViolet'
 //import MaterialCheckboxWithLabel from '../components/MaterialCheckboxWithLabel'
 import { AuthContext } from '../Providers/AuthContext'
+import { ScrollView } from 'react-native-gesture-handler'
 
 
 export default props => {
@@ -43,6 +44,7 @@ export default props => {
 
   return (
     <SafeAreaView>
+    <ScrollView>
       <View style={Vertical}>
         <Text style={styles.convenio5}>Convênio *</Text>
         <View style={Horizontal}>
@@ -125,6 +127,7 @@ export default props => {
                         new usuarios().updateUser(elmState,newData)
         }}></MaterialButtonViolet>
       </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

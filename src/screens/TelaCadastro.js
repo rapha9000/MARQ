@@ -1,15 +1,11 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, TextInput, View,Text } from "react-native";
 import MaterialButtonViolet from "../components/MaterialButtonViolet";
-import MaterialButtonViolet1 from "../components/MaterialButtonViolet1";
-import MaterialStackedLabelTextbox1 from "../components/MaterialStackedLabelTextbox1";
-import MaterialChipBasic1 from "../components/MaterialChipBasic1";
-import CupertinoButtonGrey1 from "../components/CupertinoButtonGrey1";
 import { Picker } from '@react-native-picker/picker';
-import { AuthContext } from "../Providers/AuthContext";
-import usuarios,{ addUsu } from "../../database/Usuarios";
+import {AuthContext} from '../Providers/AuthContext'
+import usuarios, { addUsu } from "../database/Usuarios";
 
-function Untitled(props) {
+export default function Untitled(props) {
   const [selectedValue, setSelectedValue] = useState(["Masculino", "Feminino", "Prefiro não identificar"])
   const { CPF, setCPF } = React.useContext(AuthContext)
   const [nome, setNome] = useState('')
@@ -32,17 +28,17 @@ function testeCPF() {
     });
 }; //colocar cpf
 
-console.log('nome:'+nome)
+// console.log('nome:'+nome)
 
   return (
-    <>
+    // <>
     
     <View style={styles.container}>
     <Text style={styles.stackedLabel1}>
           Nome:*
       </Text>
-      <TextInput
-        //placeholder={"Nome Completo"}
+     <TextInput
+        //</View>placeholder={"Nome Completo"}
         placeholder="Insira seu nome completo"
         dataDetector="none"
         secureTextEntry={false}
@@ -52,7 +48,7 @@ console.log('nome:'+nome)
         onChangeText={nome => setNome(nome)}
         />
 
-      < Text style={styles.stackedLabel1}>
+      <Text style={styles.stackedLabel1}>
           CPF:*
       </Text>
       <TextInput
@@ -198,7 +194,7 @@ console.log('nome:'+nome)
 
       </View>
     </View>
-</>
+// </>
   );
 }
 
@@ -303,4 +299,3 @@ const styles = StyleSheet.create({
  
 });
 
-export default Untitled;

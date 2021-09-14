@@ -6,7 +6,7 @@ import {
     SafeAreaView,
     TextInput, 
 } from 'react-native'
-import usuarios,{addUsu,getByCpf,updateUser} from '../../database/Usuarios'
+// import usuarios,{addUsu,getByCpf,updateUser} from '../../database/Usuarios'
 import Botao from '../components/Botao'
 import { AuthContext } from '../Providers/AuthContext'
 

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "database",
+			"path": "..\\MARQS\\database"
+		},
+		{
+			"name": "MARQ_Final",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

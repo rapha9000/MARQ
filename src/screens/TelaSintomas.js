@@ -9,7 +9,7 @@ import { AuthContext } from '../Providers/AuthContext'
 import Horizontal from '../styles/Horizontal'
 import Vertical from '../styles/Vertical'
 import { CheckBox } from 'react-native-elements'
-import usuarios from '../../database/Usuarios'
+import usuarios from '../database/Usuarios'
 
 
 function Untitled1(props) {

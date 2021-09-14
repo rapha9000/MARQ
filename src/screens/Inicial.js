@@ -7,6 +7,7 @@ import {
     SafeAreaViewBase, 
 } from 'react-native'
 import Botao from '../components/Botao'
+import MaterialButtonViolet from '../components/MaterialButtonViolet'
 
 export default props=>{
     return(
@@ -20,29 +21,23 @@ export default props=>{
                     {/* </View> */}
                     {/* <View style={{padding:10, */}
                         {/* width:30}}> */}
-                        
-                    {<Botao
-                                titulo='Entrar'
-                                onPress={() => {
-                                    props.navigation.navigate(
-                                        "Sintomas",
-                                        props.avancarParams
-                                    )
-                                }}
-                                />
-                        
-                    }
-                                        {
-                           <Botao
-                                titulo='Cadastro'
-                                onPress={() => {
-                                    props.navigation.navigate(
-                                        "Cadastro",
-                                        props.avancarParams
-                                    )
-                                }}
-                            />
-                            }
+
+                <MaterialButtonViolet style={styles.botaoVoltar} titulo='Entrar' onPress={() => {
+                        props.navigation.navigate(
+                            "Sintomas"
+                        )
+                    }}>
+                </MaterialButtonViolet>
+                <View style={styles.espaco}>
+
+                </View>
+
+                <MaterialButtonViolet style={styles.botaoVoltar} titulo='Cadastro' onPress={() => {
+                        props.navigation.navigate(
+                            "Cadastro"
+                        )
+                    }}>
+                </MaterialButtonViolet>
                     
                     </View>
                 </View>
@@ -67,5 +62,8 @@ const styles = StyleSheet.create({
     Texto:{
         justifyContent:'center',
         fontSize:50
+    },
+    espaco:{
+        padding:10
     }
 })
