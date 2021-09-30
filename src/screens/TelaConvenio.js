@@ -6,180 +6,120 @@ import {
   Text,
   View,
   SafeAreaView,
-  TextInput,
+  Dimensions
 } from 'react-native'
-import { CheckBox } from 'react-native-elements'
-import Button from '../components/Botao'
-import usuarios from '../database/Usuarios'
-import MaterialButtonViolet from '../components/MaterialButtonViolet'
-//import MaterialCheckboxWithLabel from '../components/MaterialCheckboxWithLabel'
+import { Picker } from '@react-native-community/picker'
+import CupertinoButtonInfo from '../components/CupertinoButtonInfo'
+import BotaoVoltar from '../components/BotaoVoltar'
+import EntrarInfo from '../components/EntrarInfo'
 import { AuthContext } from '../Providers/AuthContext'
 import { ScrollView } from 'react-native-gesture-handler'
 
 
 export default props => {
-    
-  const [checado, setChecado] = useState(false);
-  const [checado2, setChecado2] = useState(false);
-  const [checado3, setChecado3] = useState(false);
-  const [checado4, setChecado4] = useState(false);
-  const [checado5, setChecado5] = useState(false);
-  const [checado6, setChecado6] = useState(false);
-    const [valCon,setValCon]=useState([''])
-    const [numCon,setNumCon]=useState([''])
-    const [plano,setPlano]=useState([''])
-    const [convenio,setConvenio]=useState(['']);
-    const {CPF} = React.useContext(AuthContext) // importando variavel global
-    const [elmState, setElmState] = React.useState([]);
 
-    
+  const [selectedValue, setSelectedValue] = useState("bradesco");
+  const [valCon,setValCon]=useState([''])
+  const [numCon,setNumCon]=useState([''])
+  const [plano,setPlano]=useState([''])
+  const [convenio,setConvenio]=useState(['']);
+  const {CPF} = React.useContext(AuthContext) // importando variavel global
+  const [elmState, setElmState] = React.useState([]);
 
-    React.useEffect(() =>{
-        new usuarios().getByCpf(CPF).then((x)=>{
-            setElmState(x)
-        });
-        },[]); //colocar cpf
+  React.useEffect(() =>{
+    new usuarios().getByCpf(CPF).then((x)=>{
+        setElmState(x)
+    });
+    },[]); //colocar cpf
 
-  console.log('teste:'+valCon)
 
   return (
     <SafeAreaView>
-    <ScrollView>
       <View style={Vertical}>
-        <Text style={styles.convenio5}>Convênio *</Text>
-        <View style={Horizontal}>
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel1Row}
-          title='Bradesco'
-          checked={checado}
-          onPress={() => { setChecado(!checado) 
-            setConvenio('Bradesco')}}
-        />
-        <CheckBox
-        //style={styles.materialCheckboxWithLabel4}
-        title='Porto Seguro'
-        checked={checado5}
-        onPress={() => { setChecado5(!checado5) 
-            setConvenio('Porto Seguro')}}
-      />
+        <View style={styles.margem}>
+          <BotaoVoltar
+            style={styles.botaoVoltar}
+            title='Voltar'
+          ></BotaoVoltar>
         </View>
-        <View style={Horizontal}>
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel2}
-          title='Amil'
-          checked={checado2}
-          onPress={() => { setChecado2(!checado2) 
-            setConvenio('Amil')}}
-        />
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel3}
-          title='SulAmerica'
-          checked={checado4}
-          onPress={() => { setChecado4(!checado4) 
-            setConvenio('SulAmerica')}}
-        />
+
+        <View style={styles.margem}>
+          <Text style={styles.loremIpsum}>Convênio *</Text>
         </View>
-        <View style={Horizontal}>
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel2}
-          title='Nenhum'
-          checked={checado3}
-          onPress={() => { setChecado3(!checado3) 
-            setConvenio('Nenhum')}}
-        />
-        <CheckBox
-        //style={styles.materialCheckboxWithLabel5}
-        title='Outros'
-        checked={checado6}
-        onPress={() => { setChecado6(!checado6)
-            setConvenio('Outros') }}
-      />
+
+        <View style={styles.margem}>
+          <Picker
+            selectedValue={selectedValue}
+            style={{ height: 50, width: 150 }}
+            onValueChange={(itemValue, itemIndex) => setConvenio(itemValue)}
+          >
+            <Picker.Item label="Bradesco" value="bradesco" />
+            <Picker.Item label="Porto Seguro" value="porto" />
+            <Picker.Item label="Amil" value="amil" />
+            <Picker.Item label="SulAmérica" value="sul" />
+            <Picker.Item label="Porto Seguro" value="porto" />
+            <Picker.Item label="Outros" value="outros" />
+            <Picker.Item label="Nenhum" value="nenhum" />
+          </Picker>
+        </View>
+
+        <EntrarInfo info='Se a opção "Outros" foi selecionada, qual é o convênio?' place='Insira seu Convênio' onChangeText={convenio=>setConvenio(convenio)}></EntrarInfo>
+        <EntrarInfo info='Plano *' place='Insira seu plano' onChangeText={plano=>setPlano(plano)}></EntrarInfo>
+        <EntrarInfo info='Número do plano *' place='Insira o número do plano' onChangeText={numCon=>setNumCon(numCon)}></EntrarInfo>
+        <EntrarInfo info='Valido até *' place='Insira a validade' onChangeText={valCon=>setValCon(valCon)}></EntrarInfo>
+        <View style={styles.margem}>
+          <CupertinoButtonInfo
+            style={styles.cupertinoButtonInfo}
+            title='Cadastrar'
+            onPress={ () => {var newData={convenio:convenio, plano: plano, numCon: numCon, valCon: valCon}
+                          new usuarios().updateUser(elmState,newData)
+                          props.navigation.navigate(
+                              "Inicial"
+                              )
+                            }
+                    } 
+          ></CupertinoButtonInfo>
+        </View>
       </View>
-        <Text style={styles.plano}>Plano *</Text>
-        <TextInput
-          style={styles.textinputPlano}
-          placeholder="Insira seu plano"
-          Value={plano}
-          onChangeText={(plano)=>setPlano(plano)}
-        //style={styles.placeholder}
-        ></TextInput>
-        <Text style={styles.n6}>Nº *</Text>
-        <TextInput
-          style={styles.textinputNumero}
-          placeholder="Insira o número do convênio"
-          Value={numCon}
-          onChangeText={(numCon)=>setNumCon(numCon)}
-        //style={styles.placeholder2}
-        ></TextInput>
-        <Text style={styles.validoAte}>Valido até *</Text>
-        <TextInput
-          style={styles.textinputValidade}
-          placeholder="Insira a validade do plano"
-          Value={valCon}
-          onChangeText={(valCon)=>setValCon(valCon)}
-        //style={styles.placeholder3}
-        ></TextInput>
-         <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
-          props.navigation.navigate(
-            "Inicial"
-          )
-          var newData={convenio:convenio, plano: plano, numCon: numCon, valCon: valCon}
-                        new usuarios().updateUser(elmState,newData)
-        }}></MaterialButtonViolet>
-      </View>
-      </ScrollView>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  convenio5: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(0,0,0,1)",
-    fontSize: 23,
-    marginTop: 122,
-    marginLeft: 30
-  },
-  plano: {
-    fontFamily: "helvetica-regular",
+
+  loremIpsum: {
+    //fontFamily: "roboto-regular",
     color: "#121212",
-    height: 28,
-    width: 102,
-    fontSize: 23,
-    marginTop: 189,
-    marginLeft: 30
+    fontSize: 20,
   },
-  n6: {
-    fontFamily: "helvetica-regular",
-    color: "#121212",
-    fontSize: 23,
-    marginTop: 58,
-    marginLeft: 30
+  margem: {
+    marginBottom: 15
   },
-  validoAte: {
-    fontFamily: "helvetica-regular",
-    color: "#121212",
-    fontSize: 23,
-    marginTop: 43,
-    marginLeft: 30
+  cupertinoButtonInfo: {
+    height: 61,
+    width: 325,
+    backgroundColor: "rgba(80,227,194,1)",
+    shadowColor: "rgba(155,155,155,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
   },
-  textinputPlano: {
-    height: 20,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+  botaoVoltar: {
+    height: 30,
+    width: 162,
+    backgroundColor: "#ADD8E6",
+    shadowColor: "rgba(155,155,155,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
   },
-  textinputNumero: {
-    height: 20,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+  horizontal: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  textinputValidade: {
-    height: 20,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  }
 
 });

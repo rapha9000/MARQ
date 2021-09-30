@@ -1,0 +1,78 @@
+import React, { Component, useState } from "react";
+import { StyleSheet, View, Text, SafeAreaView, Dimensions } from "react-native";
+import CupertinoButtonInfo from "../components/CupertinoButtonInfo"
+import BotaoVoltar from "../components/BotaoVoltar"
+import EntrarInfo from '../components/EntrarInfo'
+import Vertical from "../styles/Vertical";
+import { ScrollView } from "react-native-gesture-handler";
+
+export default props => {
+
+    return (
+        <ScrollView>
+        <SafeAreaView style={{flex:1}}>
+         <View style={Vertical}>
+            <View style={styles.container}>
+                <View style={styles.margem}>
+                    <BotaoVoltar
+                        style={styles.botaoVoltar}
+                        title='Voltar'
+                    ></BotaoVoltar>
+                </View>
+                <EntrarInfo info='Digite seu e-mail para alterar a senha *' place='Insira seu e-mail'></EntrarInfo>
+            </View>
+            <View style={styles.margem}>
+                <CupertinoButtonInfo
+                    style={styles.cupertinoButtonInfo}
+                    title='Enviar'
+                    onPress={()=> props.navigation.navigate(
+                        "Inicial"
+                        )}
+                ></CupertinoButtonInfo>
+            </View>
+         </View>
+        </SafeAreaView>
+        </ScrollView>
+    );
+}
+
+const styles = StyleSheet.create({
+    botaoVoltar: {
+        height: 30,
+        width: 162,
+        backgroundColor: "#ADD8E6",
+        shadowColor: "rgba(155,155,155,1)",
+        shadowOffset: {
+            width: 3,
+            height: 3
+        },
+    },
+
+    margem: {
+        marginBottom: 15
+    },
+
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+        alignContent: "stretch",
+        height: Dimensions.get("window").height,
+        marginTop:20
+        //borderWidth: 5
+    },
+
+    cupertinoButtonInfo: {
+        height: 61,
+        width: 325,
+        backgroundColor: "rgba(80,227,194,1)",
+        shadowColor: "rgba(155,155,155,1)",
+        shadowOffset: {
+            width: 3,
+            height: 3
+        },
+    },
+   
+
+});

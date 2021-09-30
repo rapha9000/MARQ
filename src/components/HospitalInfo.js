@@ -1,7 +1,7 @@
 import React, { } from "react";
 import { StyleSheet, View, Text } from "react-native";
-// import EntypoIcon from "react-native-vector-icons/Entypo";
-// import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import EntypoIcon from "react-native-vector-icons/Entypo";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import CupertinoButtonInfo from "./CupertinoButtonInfo";
 
 function HospitalInfo(props) {
@@ -15,17 +15,17 @@ function HospitalInfo(props) {
         ></CupertinoButtonInfo>
         <View style={styles.horizontal}>
           <View style={styles.horizontal}>
-            {/* <EntypoIcon name="star" style={styles.icon}></EntypoIcon> */}
+            <EntypoIcon name="star" style={styles.icon}></EntypoIcon>
             <Text style={styles.loremIpsum}>{props.estrelas}</Text>
           </View>
 
           <View style={styles.horizontal}>
-            {/* <EntypoIcon name="location-pin" style={styles.icon}></EntypoIcon> */}
+            <EntypoIcon name="location-pin" style={styles.icon}></EntypoIcon>
             <Text style={styles.loremIpsum}>{props.distancia}</Text>
           </View>
 
           <View style={styles.horizontal}>
-            {/* <IoniconsIcon name="md-time" style={styles.icon}></IoniconsIcon> */}
+            <IoniconsIcon name="md-time" style={styles.icon}></IoniconsIcon>
             <Text style={styles.loremIpsum}>{props.tempo}</Text>
           </View>
         </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "stretch",
     //borderWidth: 2,
-    width: '17.3vw'
+    //width: '17.3vw'
   },
   margem:{
     marginBottom: 15

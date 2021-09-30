@@ -1,7 +1,10 @@
+import { Dimensions } from "react-native"
+
 export default {
     display: "flex", 
     flexDirection: "column", 
-    justifyContent: "space-between", 
+    justifyContent: 'space-around', 
     alignItems: "center",
-    // padding:10
+    alignContent: "stretch",
+    height: Dimensions.get("window").height,
 }

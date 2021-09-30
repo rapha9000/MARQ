@@ -41,11 +41,9 @@ console.log('teste:'+convenio)
             title='Voltar'
           ></BotaoVoltar>
         </View>
-        
         <View style={styles.margem}>
           <Text style={styles.loremIpsum}>Convênio *</Text>
         </View>
-
         <View style={styles.margem}>
           <Picker
             selectedValue={selectedValue}
