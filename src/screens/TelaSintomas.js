@@ -11,6 +11,7 @@ import Horizontal from '../styles/Horizontal'
 import Vertical from '../styles/Vertical'
 import { CheckBox } from 'react-native-elements'
 import usuarios from '../database/Usuarios'
+import { ScrollView } from "react-native-gesture-handler";
 
 
 function Untitled1(props) {
@@ -41,74 +42,72 @@ function Untitled1(props) {
 
   return (
 
-    <View style={styles.container}>
- <SafeAreaView>
-      <View style={Vertical}>
-        <Text style={styles.convenio5}>Especialidades *</Text>
-        <View style={Horizontal}>
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel1Row}
-          title='Clinico Geral'
-          checked={checado}
-          onPress={() => { setChecado(!checado) 
-            setEspecialidade('Clinico Geral')}}
-        />
-        <CheckBox
-        //style={styles.materialCheckboxWithLabel4}
-        title='Ortopedia'
-        checked={checado5}
-        onPress={() => { setChecado5(!checado5) 
-            setEspecialidade('Ortopedia')}}
-      />
-        </View>
-        <View style={Horizontal}>
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel2}
-          title='Otorrino'
-          checked={checado2}
-          onPress={() => { setChecado2(!checado2) 
-            setEspecialidade('Otorrino')}}
-        />
-        <CheckBox
-          //style={styles.materialCheckboxWithLabel3}
-          title='Oftalmologia'
-          checked={checado4}
-          onPress={() => { setChecado4(!checado4) 
-            setEspecialidade('Oftalmologia')}}
-        />
-        </View>
-        <View style={Horizontal}>
-      
-        <CheckBox
-        //style={styles.materialCheckboxWithLabel5}
-        title='Outros'
-        checked={checado6}
-        onPress={() => { setChecado6(!checado6)
-            setEspecialidade('Outros') }}
-      />
+    <ScrollView>
+      <View style={styles.container}> 
+        <SafeAreaView>
+          <View style={Vertical}>
+            <Text style={styles.convenio5}>Especialidades *</Text>
+            <View style={Horizontal}>
+              <CheckBox
+                //style={styles.materialCheckboxWithLabel1Row}
+                title='Clinico Geral'
+                checked={checado}
+                onPress={() => { setChecado(!checado) 
+                  setEspecialidade('Clinico Geral')}}
+              />
+              <CheckBox
+              //style={styles.materialCheckboxWithLabel4}
+              title='Ortopedia'
+              checked={checado5}
+              onPress={() => { setChecado5(!checado5) 
+                  setEspecialidade('Ortopedia')}}
+              />
+            </View>
+            <View style={Horizontal}>
+              <CheckBox
+                //style={styles.materialCheckboxWithLabel2}
+                title='Otorrino'
+                checked={checado2}
+                onPress={() => { setChecado2(!checado2) 
+                  setEspecialidade('Otorrino')}}
+              />
+              <CheckBox
+                //style={styles.materialCheckboxWithLabel3}
+                title='Oftalmologia'
+                checked={checado4}
+                onPress={() => { setChecado4(!checado4) 
+                  setEspecialidade('Oftalmologia')}}
+              />
+            </View>
+            <View style={Horizontal}>
+              <CheckBox
+              //style={styles.materialCheckboxWithLabel5}
+              title='Outros'
+              checked={checado6}
+              onPress={() => { setChecado6(!checado6)
+                  setEspecialidade('Outros') }}
+              />
+            </View>
+            <TextInput
+                style={styles.textinputNumero}
+                placeholder="Sintomas"
+                Value={sintomas}
+                onChangeText={(sintomas)=>setSintomas(sintomas)}
+              //style={styles.placeholder2}
+            ></TextInput>
+            
+          <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
+              props.navigation.navigate(
+                "Hospitais"
+              )
+                var newData={especialidade: especialidade, sintomas:sintomas}
+                            new usuarios().updateUser(elmState,newData)
+            }}>
+            </MaterialButtonViolet>
+          </View>
+        </SafeAreaView>
       </View>
-      <TextInput
-          style={styles.textinputNumero}
-          placeholder="Sintomas"
-          Value={sintomas}
-          onChangeText={(sintomas)=>setSintomas(sintomas)}
-        //style={styles.placeholder2}
-        ></TextInput>
-        
-      </View>
-    </SafeAreaView>
- 
-   
-      
-      <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
-          props.navigation.navigate(
-            "Hospitais"
-          )
-            var newData={especialidade: especialidade, sintomas:sintomas}
-                        new usuarios().updateUser(elmState,newData)
-        }}>
-        </MaterialButtonViolet>
-    </View>
+    </ScrollView> 
 
   );
 }

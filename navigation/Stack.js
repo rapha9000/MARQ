@@ -13,6 +13,7 @@ import AppAssinatura from '../src/screens/AppAssinatura'
 import AppCamera from '../src/screens/AppCamera'
 //import TelaMapa from '../src/screens/TelaMapa'
 import AppMapa from '../src/screens/AppMapa'
+import TelaEsqueciASenha from '../src/screens/TelaEsqueciASenha'
 
 
 const Stack = createStackNavigator()
@@ -33,6 +34,14 @@ export default props => (
           <Entrar {...props}>
             <Entrar/>
           </Entrar>
+        )}
+      </Stack.Screen>
+
+      <Stack.Screen name="EsqueciSenha"  >
+        {props=> (
+          <TelaEsqueciASenha {...props}>
+            <TelaEsqueciASenha/>
+          </TelaEsqueciASenha>
         )}
       </Stack.Screen>
 

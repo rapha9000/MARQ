@@ -1,14 +1,16 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, Text, SafeAreaView, Dimensions } from "react-native";
+import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 import { CheckBox } from 'react-native-elements'
-import HospitalInfo from '../components/HospitalInfo'
+// import HospitalInfo from '../components/HospitalInfo'
 import BotaoVoltar from "../components/BotaoVoltar"
+// import { AuthContext } from '../Providers/AuthContext'
 import { EmailContext } from '../Providers/EmailContext'
 import usuarios from '../database/Usuarios'
-import { ScrollView } from "react-native-gesture-handler";
-//import CheckBox from '@react-native-community/checkbox'
 
 export default props => {
+
+  
+
   const [checado, setChecado] = useState(false);
   const [hospital, setHospital] = useState();
   const {Email} = React.useContext(EmailContext) // importando variavel global
@@ -53,49 +55,51 @@ export default props => {
     });
     },[]); //colocar cpf
 
-  let hospitais = listaHosp.map(
-    (elem) => {
-      return <HospitalInfo nome={elem.nome} estrelas={elem.estrelas} distancia={elem.distancia} tempo={elem.tempo} onPress={()=>{ 
-              // setHospital(elem.nome)
-              // {hospital == elem.nome ? Hospital=elem.nome : console.log('deuruim')}
-              Hospital=elem.nome
-              props.navigation.navigate(
-              "Assinatura"
-            )
-              var newData={hospital: Hospital}
-                              new usuarios().updateUser(elmState,newData)
-            }}></HospitalInfo>
-    }
+  // let hospitais = listaHosp.map(
+  //   (elem,idx) => {
+  //     return <HospitalInfo key={idx} nome={elem.nome} estrelas={elem.estrelas} distancia={elem.distancia} tempo={elem.tempo} onPress={()=>{ 
+  //       // setHospital(elem.nome)
+  //       // {hospital == elem.nome ? Hospital=elem.nome : console.log('deuruim')}
+  //       Hospital=elem.nome
+  //       props.navigation.navigate(
+  //       "Assinatura"
+  //     )
+  //       var newData={hospital: Hospital}
+  //                       new usuarios().updateUser(elmState,newData)
+        
+  //     }} ></HospitalInfo>
+  //   }
+  // )
 
-
-  )
+  console.log('teste:'+hospital)
 
   return (
-    <ScrollView>
-      <SafeAreaView style={{flex:1}}>
-        <View style={styles.container}>
-          <View style={styles.margem}>
-            <BotaoVoltar
-              style={styles.botaoVoltar}
-              title='Voltar'
-            ></BotaoVoltar>
-          </View>
-          <View style={styles.margem}>
-            <CheckBox
-              title='Deseja utilizar o convênio?'
-              checked={checado}
-              onPress={() => { setChecado(!checado) }}
-              style={styles.materialCheckboxWithLabel}
-            ></CheckBox>
-          </View>
-          <View style={styles.margem}>
-            <Text style={styles.loremIpsum}>Selecione o hospital desejado:</Text>
-          </View>
-          {hospitais}
-
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.margem}>
+          <BotaoVoltar
+            style={styles.botaoVoltar}
+            title='Continuar'
+            onPress={()=> props.navigation.navigate(
+        "Assinatura"
+      )}
+          ></BotaoVoltar>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+        <View style={styles.margem}>
+          <CheckBox
+            title='Deseja utilizar o convênio?'
+            checked={checado}
+            onPress={() => { setChecado(!checado) }}
+            style={styles.materialCheckboxWithLabel}
+          ></CheckBox>
+        </View>
+        <View style={styles.margem}>
+          <Text style={styles.loremIpsum}>Selecione o marcos desejado:</Text>
+        </View>
+        {/* {hospitais} */}
+
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -106,8 +110,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    alignContent: "stretch",
-    height: Dimensions.get("window").height,
     marginTop:20
     //borderWidth: 5
   },
@@ -121,10 +123,9 @@ const styles = StyleSheet.create({
     //fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 21,
-    textAlign: "center"
   },
   margem: {
-    marginBottom: 15
+    marginBottom: 50
   },
   botaoVoltar: {
     height: 30,

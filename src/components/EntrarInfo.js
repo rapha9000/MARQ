@@ -19,16 +19,16 @@ function EntrarInfo(props) {
 
 const styles = StyleSheet.create({
     vertical: {
-        flex:1,
+        //flex:1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "stretch",
+        alignItems: "center",
         //borderWidth: 2,
         //width: '17.3vw'
     },
     margem: {
-        marginBottom: 100
+        marginBottom: 15
     },
     horizontal: {
         display: "flex",
@@ -40,10 +40,11 @@ const styles = StyleSheet.create({
         //fontFamily: "roboto-regular",
         color: "#121212",
         fontSize: 20,
+        textAlign: "center"
     },
     textinput: {
-        height: 35,
-        margin: 5,
+        height: 40,
+        margin: 40,
         borderWidth: 1,
         padding: 10,
     },
