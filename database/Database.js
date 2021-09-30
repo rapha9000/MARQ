@@ -15,6 +15,8 @@ var config = {
 
 export default class Database{
   static db = null;
+
+  
   static getDb(){
     if(!this.db){
       try {

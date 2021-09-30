@@ -2,14 +2,22 @@ import React from "react";
 import { SafeAreaProvider, SafeAreaView,Text } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "./Stack";
+import { AuthProvider } from "../src/Providers/AuthContext";
+import { registerRootComponent } from 'expo';
+import { EmailProvider } from "../src/Providers/EmailContext";
 
-export default props=>(
+export default function Index (){
+    return(
     <SafeAreaProvider>
-        <SafeAreaView style={{flex:1}}>
-            <NavigationContainer>
-                <Stack />
-            </NavigationContainer>
-        </SafeAreaView>
-
+        <EmailProvider>
+            <AuthProvider>
+                <NavigationContainer>
+                    <Stack />
+                </NavigationContainer>
+            </AuthProvider>
+        </EmailProvider>
     </SafeAreaProvider>
-)
+    )
+}
+
+registerRootComponent(Index);

@@ -3,39 +3,44 @@ import {
     StyleSheet,
     Text,
     View,
-    SafeAreaView, 
+    SafeAreaView,
+    SafeAreaViewBase, 
 } from 'react-native'
-import PassoStack from '../../navigation/PassoStack'
 import Botao from '../components/Botao'
+import MaterialButtonViolet from '../components/MaterialButtonViolet'
 
 export default props=>{
     return(
-            <SafeAreaView>
-                <View style = {styles.container}>
+        <View style = {styles.container}>
                     <Text style={styles.Texto}>
                         Fila Virtual!
                     </Text>
                     <View style={styles.componentes}>
-                    <Botao titulo='Cadastro' />
+                    {/*<Botao titulo='Cadastro' />
+
                     {/* </View> */}
                     {/* <View style={{padding:10, */}
                         {/* width:30}}> */}
-                        
-                    {props.avancar
-                        ?   <Botao
-                                titulo='Entrar'
-                                onPress={() => {
-                                    props.navigation.navigate(
-                                        props.avancar,
-                                        props.avancarParams
-                                    )
-                                }}
-                            />
-                        : false
-                    }
+
+                <MaterialButtonViolet style={styles.botaoVoltar} titulo='Entrar' onPress={() => {
+                        props.navigation.navigate(
+                            "Login"
+                        )
+                    }}>
+                </MaterialButtonViolet>
+                <View style={styles.espaco}>
+
+                </View>
+
+                <MaterialButtonViolet style={styles.botaoVoltar} titulo='Cadastro' onPress={() => {
+                        props.navigation.navigate(
+                            "Cadastro"
+                        )
+                    }}>
+                </MaterialButtonViolet>
+                    
                     </View>
                 </View>
-            </SafeAreaView>  
     )
 }
 
@@ -55,6 +60,10 @@ const styles = StyleSheet.create({
         justifyContent:'space-around',
     },
     Texto:{
+        justifyContent:'center',
         fontSize:50
+    },
+    espaco:{
+        padding:10
     }
 })

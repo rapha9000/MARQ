@@ -9,16 +9,10 @@ export default props=>{
             onPress={props.onPress}>
             <View style ={styles.container}>
                 <View style={styles.buttonContainer}>
-                    <Text >
+                    <Text>
                         {props.titulo}
                     </Text>
                 </View>
-                {/* <Button 
-                    type ="clear"
-                    title={props.titulo}
-                    titleStyle={{color:'black'}}
-                    
-                    /> */}
             </View>
         </TouchableOpacity>
     )
