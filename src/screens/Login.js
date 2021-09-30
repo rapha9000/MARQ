@@ -25,6 +25,7 @@ export default props => {
             setUsuariosState(x);
         });
     }, []);
+    
     function testeCPF() {
         new usuarios().getByCpf(CPF).then((x) => {
             setElmState(x)

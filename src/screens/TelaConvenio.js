@@ -19,16 +19,16 @@ import { ScrollView } from 'react-native-gesture-handler'
 
 export default props => {
     
+  const [checado, setChecado] = useState(false);
+  const [checado2, setChecado2] = useState(false);
+  const [checado3, setChecado3] = useState(false);
+  const [checado4, setChecado4] = useState(false);
+  const [checado5, setChecado5] = useState(false);
+  const [checado6, setChecado6] = useState(false);
     const [valCon,setValCon]=useState([''])
     const [numCon,setNumCon]=useState([''])
     const [plano,setPlano]=useState([''])
     const [convenio,setConvenio]=useState(['']);
-    const [checado, setChecado] = useState(false);
-    const [checado2, setChecado2] = useState(false);
-    const [checado3, setChecado3] = useState(false);
-    const [checado4, setChecado4] = useState(false);
-    const [checado5, setChecado5] = useState(false);
-    const [checado6, setChecado6] = useState(false);
     const {CPF} = React.useContext(AuthContext) // importando variavel global
     const [elmState, setElmState] = React.useState([]);
 

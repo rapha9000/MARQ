@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import db from './Database';
 import firebase from 'firebase';
-import { usuariosContext } from '../Providers/usuariosContext';
+
 
 export default class Usuarios{
   constructor(){
@@ -43,6 +43,26 @@ async getByCpf(cpf){
   
   return elm;
 }
+async getByEmail(email){
+  let elm = null;
+  await this.usuarios.where("email", "==", email).get().then( (query) => {
+    query.forEach( (el) => {
+      elm = el;
+    } )
+  } )
+  
+  return elm;
+}
+async getBySenha(senha){
+  let elm = null;
+  await this.usuarios.where("senha", "==", senha).get().then( (query) => {
+    query.forEach( (el) => {
+      elm = el;
+    } )
+  } )
+  
+  return elm;
+}
 
  async updateUser(el, newData){
   this.usuarios.doc(el.id).update(newData);
@@ -67,7 +87,9 @@ export function addUsu(usuario){
        valCon: usuario.valCon,
        especialidade: usuario.especialidade,
        sintomas: usuario.sintomas,
-       //sexo:usuario.selectedValue
+       sexo: usuario.sexo,
+       hospital:usuario.hospital,
+       imagem:usuario.imagem
        }) }
 
 

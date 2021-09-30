@@ -1,9 +1,10 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, TextInput, View,Text } from "react-native";
 import MaterialButtonViolet from "../components/MaterialButtonViolet";
-import { Picker } from '@react-native-picker/picker';
+import { Picker } from '@react-native-community/picker';
 import {AuthContext} from '../Providers/AuthContext'
 import usuarios, { addUsu } from "../database/Usuarios";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function Untitled(props) {
   const [selectedValue, setSelectedValue] = useState(["Masculino", "Feminino", "Prefiro não identificar"])
@@ -15,24 +16,19 @@ export default function Untitled(props) {
   const [senha, setSenha] = useState('')
   const [celular, setCelular] = useState('')
   const [elmState, setElmState] = React.useState(false);
-  const [usuariosState, setUsuariosState] = React.useState([]);
+  var sexo = 'britinho'
 
-  React.useEffect(() => {
-    new usuarios().getAll().then((x) => {
-        setUsuariosState(x);
-    });
-}, []);
 function testeCPF() {
     new usuarios().getByCpf(CPF).then((x) => {
         setElmState(x)
     });
 }; //colocar cpf
 
-// console.log('nome:'+nome)
+console.log('teste:'+elmState)
 
   return (
     // <>
-    
+    <ScrollView>
     <View style={styles.container}>
     <Text style={styles.stackedLabel1}>
           Nome:*
@@ -59,8 +55,12 @@ function testeCPF() {
         style={styles.inputStyle1}
         Value={CPF}
         onChangeText={(e) => setCPF(e)}
+        onBlur={()=>{
+          testeCPF()
+        }}
           >
         </TextInput>
+        {elmState ? <Text> CPF ja cadastrado</Text> : false }
 
       <Text style={styles.stackedLabel1}>
         E-mail:*
@@ -133,7 +133,7 @@ function testeCPF() {
         </TextInput>
       
       
-      {/* <Picker
+      <Picker
         selectedValue={selectedValue}
         style={{
           //alignItems: "center",
@@ -148,15 +148,16 @@ function testeCPF() {
           marginLeft: 80,
         }}
         mode="dropdown"
-        onValueChange={(itemValue) => setSelectedValue(itemValue)}
-
-      >
+        onValueChange={(selectedValue) => setSelectedValue(selectedValue)}
+      > 
         
+
+          <Picker.Item label="- Selecione o sexo -" />
           <Picker.Item label="Masculino" value="Masculino" />
           <Picker.Item label="Feminino" value="Feminino" />
           <Picker.Item label="Prefiro não Identificar" value="Sem" />
         
-      </Picker> */}
+      </Picker>
 
       <View style={styles.rect}></View>
 
@@ -169,6 +170,9 @@ function testeCPF() {
         </MaterialButtonViolet>
 
         <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
+          {selectedValue == "Masculino" ? sexo='Masculino' : console.log('deuruim')}
+          {selectedValue == "Feminino" ? sexo="Feminino" : console.log('deuruim')}
+          {selectedValue == "Sem" ? sexo="Sem" : console.log('deuruim')}
           addUsu({
             nome: nome,
             endereco: endereco,
@@ -183,8 +187,9 @@ function testeCPF() {
             valCon:'',
             especialidade: '',
             sintomas: '',
-            //sexo:selectedValue.toString() //chou arruma
-
+            sexo:sexo,
+            hospital:'',
+            imagem:''
         })
           props.navigation.navigate(
             "Convenio"
@@ -194,9 +199,12 @@ function testeCPF() {
 
       </View>
     </View>
+    </ScrollView>
 // </>
   );
 }
+
+        
 
 const styles = StyleSheet.create({
   container: {

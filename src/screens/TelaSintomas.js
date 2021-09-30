@@ -6,6 +6,7 @@ import MaterialCheckboxWithLabel6 from "../components/MaterialCheckboxWithLabel6
 import MaterialButtonViolet2 from "../components/MaterialButtonViolet2";
 import MaterialButtonViolet from "../components/MaterialButtonViolet";
 import { AuthContext } from '../Providers/AuthContext'
+import { EmailContext } from '../Providers/EmailContext'
 import Horizontal from '../styles/Horizontal'
 import Vertical from '../styles/Vertical'
 import { CheckBox } from 'react-native-elements'
@@ -26,11 +27,12 @@ function Untitled1(props) {
     const [checado4, setChecado4] = useState(false);
     const [checado5, setChecado5] = useState(false);
     const [checado6, setChecado6] = useState(false);
-    const {CPF} = React.useContext(AuthContext) // importando variavel global
+    // const {CPF} = React.useContext(AuthContext) // importando variavel global
+    const {Email} = React.useContext(EmailContext) // importando variavel global
     const [elmState, setElmState] = React.useState([]);
 
     React.useEffect(() =>{
-      new usuarios().getByCpf(CPF).then((x)=>{
+      new usuarios().getByEmail(Email).then((x)=>{
           setElmState(x)
       });
       },[]); //colocar cpf
@@ -100,7 +102,7 @@ function Untitled1(props) {
       
       <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
           props.navigation.navigate(
-            "Convenio"
+            "Hospitais"
           )
             var newData={especialidade: especialidade, sintomas:sintomas}
                         new usuarios().updateUser(elmState,newData)

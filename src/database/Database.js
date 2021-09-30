@@ -2,15 +2,14 @@ import firebase from 'firebase/app';
 //import firebase from 'firebase'
 import 'firebase/firestore';
 
-var config = {
-  apiKey: "AIzaSyAwiZrgIKkXOe5Ip6RJFc6sAM2-libdo2c",
-  authDomain: "marq-bb757.firebaseapp.com",
-  databaseURL: "https://marq-bb757-default-rtdb.firebaseio.com",
-  projectId: "marq-bb757",
-  storageBucket: "marq-bb757.appspot.com",
-  messagingSenderId: "35190464921",
-  appId: "1:35190464921:web:a2abbd860ef2d39332f308",
-  measurementId: "G-JBLH7JLYSK"
+const firebaseConfig = {
+  apiKey: "AIzaSyCOP1omhBK24tXV1dGnR1jHmHFOlGSZkI4",
+  authDomain: "marq2-768c9.firebaseapp.com",
+  projectId: "marq2-768c9",
+  storageBucket: "marq2-768c9.appspot.com",
+  messagingSenderId: "846953979788",
+  appId: "1:846953979788:web:9732fb760997b1041700a9",
+  measurementId: "G-2X3M3X3F85"
 };
 
 export default class Database{
@@ -20,7 +19,7 @@ export default class Database{
   static getDb(){
     if(!this.db){
       try {
-        firebase.initializeApp(config)
+        firebase.initializeApp(firebaseConfig)
       } catch (err) {
         console.log(err);
       }

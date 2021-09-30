@@ -24,7 +24,7 @@ export default props=>{
 
                 <MaterialButtonViolet style={styles.botaoVoltar} titulo='Entrar' onPress={() => {
                         props.navigation.navigate(
-                            "Sintomas"
+                            "Login"
                         )
                     }}>
                 </MaterialButtonViolet>

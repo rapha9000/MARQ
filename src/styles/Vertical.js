@@ -2,5 +2,6 @@ export default {
     display: "flex", 
     flexDirection: "column", 
     justifyContent: "space-between", 
-    alignItems: "center"
+    alignItems: "center",
+    // padding:10
 }
