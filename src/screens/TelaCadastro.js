@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, TextInput, View,Text } from "react-native";
+import { StyleSheet, TextInput, View,Text, TouchableOpacity } from "react-native";
 import MaterialButtonViolet from "../components/MaterialButtonViolet";
 import { Picker } from '@react-native-community/picker';
 import {AuthContext} from '../Providers/AuthContext'
@@ -144,23 +144,25 @@ console.log('teste:'+elmState)
           paddingRight: 12,
           width: 200,
           height: 32,
-          marginTop: 28,
+          marginTop: 20,
+          marginBottom:20,
           marginLeft: 80,
         }}
+        
         mode="dropdown"
         onValueChange={(selectedValue) => setSelectedValue(selectedValue)}
       > 
         
 
-          <Picker.Item label="- Selecione o sexo -" />
+          <Picker.Item color = "black" label="- Selecione o sexo -" />
           <Picker.Item label="Masculino" value="Masculino" />
           <Picker.Item label="Feminino" value="Feminino" />
           <Picker.Item label="Prefiro não Identificar" value="Sem" />
         
       </Picker>
-
-      <View style={styles.rect}></View>
-
+      <TouchableOpacity>
+      <View style={styles.rect}><Text style={{marginTop:55, textAlign:"center"}}>Clique para inserir a foto do seu documento</Text></View>
+        </TouchableOpacity>
       <View style={styles.botaoVoltarRow}>
         <MaterialButtonViolet style={styles.botaoVoltar} titulo='Voltar' onPress={() => {
           props.navigation.navigate(
@@ -169,7 +171,7 @@ console.log('teste:'+elmState)
         }}>
         </MaterialButtonViolet>
 
-        <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
+        <MaterialButtonViolet style={styles.botaoContinuar} titulo='Continuar' onPress={() => {
           {selectedValue == "Masculino" ? sexo='Masculino' : console.log('deuruim')}
           {selectedValue == "Feminino" ? sexo="Feminino" : console.log('deuruim')}
           {selectedValue == "Sem" ? sexo="Sem" : console.log('deuruim')}
@@ -208,7 +210,8 @@ console.log('teste:'+elmState)
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#d8f6ff"
   },
   botaoVoltar: {
     height: 36,
@@ -264,8 +267,9 @@ const styles = StyleSheet.create({
     width: 301,
     height: 123,
     backgroundColor: "#E6E6E6",
-    marginTop: 11,
-    marginLeft: 37
+    //marginTop: 11,
+    //marginLeft: 37,
+    alignSelf:"center"
   },
   cupertinoButtonGrey1: {
     height: 44,

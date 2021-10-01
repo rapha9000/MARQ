@@ -6,7 +6,8 @@ import {
     Modal,
     TouchableOpacity,
     SafeAreaView,
-    StyleSheet
+    StyleSheet,
+    PermissionsAndroid,
 } from "react-native";
 import { Camera } from "expo-camera";
 import { FontAwesome } from "@expo/vector-icons";

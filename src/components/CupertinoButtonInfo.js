@@ -15,13 +15,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    borderRadius: 5,
+    borderRadius: 20,
     paddingLeft: 16,
     paddingRight: 16
   },
   titulo: {
-    color: "#fff",
+    color: "#0073ba",
     fontSize: 25
+    
   }
 });
 

@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import Button from '../components/Botao'
 import usuarios from '../../database/Usuarios'
+import CupertinoButtonInfo from "../components/CupertinoButtonInfo"
 
 
 export default props => {
