@@ -9,17 +9,13 @@ import { ScrollView } from "react-native-gesture-handler";
 export default props => {
 
     return (
-        <ScrollView>
         <SafeAreaView style={{flex:1}}>
          <View style={Vertical}>
             <View style={styles.container}>
-                <View style={styles.margem}>
-                    <BotaoVoltar
-                        style={styles.botaoVoltar}
-                        title='Voltar'
-                    ></BotaoVoltar>
-                </View>
-                <EntrarInfo info='Digite seu e-mail para alterar a senha *' place='Insira seu e-mail'></EntrarInfo>
+                
+                <EntrarInfo 
+                info='Digite seu e-mail para alterar a senha *'
+                 place='Insira seu e-mail para recuperar a senha'></EntrarInfo>
             </View>
             <View style={styles.margem}>
                 <CupertinoButtonInfo
@@ -32,7 +28,7 @@ export default props => {
             </View>
          </View>
         </SafeAreaView>
-        </ScrollView>
+
     );
 }
 
@@ -59,7 +55,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         alignContent: "stretch",
         height: Dimensions.get("window").height,
-        marginTop:20
+        marginTop:500
         //borderWidth: 5
     },
 
@@ -72,6 +68,7 @@ const styles = StyleSheet.create({
             width: 3,
             height: 3
         },
+        marginBottom:300
     },
    
 

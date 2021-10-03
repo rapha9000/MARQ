@@ -7,4 +7,5 @@ export default {
     alignItems: "center",
     alignContent: "stretch",
     height: Dimensions.get("window").height,
+    backgroundColor: "#d8f6ff"
 }

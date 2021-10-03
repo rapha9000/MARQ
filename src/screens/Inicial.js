@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     imgPhoto: {
         borderRightWidth:1,
         borderRadius:1,
-        paddingTop:10,
+        paddingTop:200,
         paddingBottom:10,
         width: 300,
         height: 300,

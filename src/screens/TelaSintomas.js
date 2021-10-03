@@ -1,5 +1,5 @@
 import React, { Component,useState } from "react";
-import { StyleSheet, View, Text, SafeAreaView, TextInput } from "react-native";
+import { StyleSheet, View, Text, SafeAreaView, TextInput, Keyboard, TouchableWithoutFeedback} from "react-native";
 import MaterialCheckboxWithLabel4 from "../components/MaterialCheckboxWithLabel4";
 import MaterialFixedLabelTextbox from "../components/MaterialFixedLabelTextbox";
 import MaterialCheckboxWithLabel6 from "../components/MaterialCheckboxWithLabel6";
@@ -12,6 +12,7 @@ import Vertical from '../styles/Vertical'
 import { CheckBox } from 'react-native-elements'
 import usuarios from '../database/Usuarios'
 import { ScrollView } from "react-native-gesture-handler";
+import CupertinoButtonInfo from "../components/CupertinoButtonInfo"
 
 
 function Untitled1(props) {
@@ -42,14 +43,18 @@ function Untitled1(props) {
 
   return (
 
-    <ScrollView>
-      <View style={styles.container}> 
+    
+      <View style={styles.container} > 
+      <ScrollView contentContainerStyle={{flexGrow:1}} keyboardShouldPersistTaps='handled'>
+      
         <SafeAreaView>
-          <View style={Vertical}>
-            <Text style={styles.convenio5}>Especialidades *</Text>
-            <View style={Horizontal}>
+        
+        {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}></TouchableWithoutFeedback> */}
+          <View style={{}}>
+            <Text style={{fontSize:20,paddingTop:10,paddingLeft:15,paddingBottom:10}}>Especialidades *</Text>
+            <View style={{paddingLeft:-200}}>
               <CheckBox
-                //style={styles.materialCheckboxWithLabel1Row}
+                style={{}}
                 title='Clinico Geral'
                 checked={checado}
                 onPress={() => { setChecado(!checado) 
@@ -63,9 +68,9 @@ function Untitled1(props) {
                   setEspecialidade('Ortopedia')}}
               />
             </View>
-            <View style={Horizontal}>
+              <View style={{}}>
               <CheckBox
-                //style={styles.materialCheckboxWithLabel2}
+                style={{marginTop:-50}}
                 title='Otorrino'
                 checked={checado2}
                 onPress={() => { setChecado2(!checado2) 
@@ -79,7 +84,7 @@ function Untitled1(props) {
                   setEspecialidade('Oftalmologia')}}
               />
             </View>
-            <View style={Horizontal}>
+            <View style={{}}>
               <CheckBox
               //style={styles.materialCheckboxWithLabel5}
               title='Outros'
@@ -88,33 +93,42 @@ function Untitled1(props) {
                   setEspecialidade('Outros') }}
               />
             </View>
+            <View style={{paddingTop:50}}>
+              <Text style={{alignSelf:"center",fontSize:20}}>Descreva os seus sintomas abaixo:</Text>
+           
             <TextInput
                 style={styles.textinputNumero}
+                multiline={true}
                 placeholder="Sintomas"
                 Value={sintomas}
                 onChangeText={(sintomas)=>setSintomas(sintomas)}
               //style={styles.placeholder2}
             ></TextInput>
             
-          <MaterialButtonViolet style={styles.botaoVoltar} titulo='Continuar' onPress={() => {
+          </View>
+          <CupertinoButtonInfo style={styles.cupertinoButtonInfo} title='Continuar' onPress={() => {
               props.navigation.navigate(
                 "Hospitais"
               )
                 var newData={especialidade: especialidade, sintomas:sintomas}
                             new usuarios().updateUser(elmState,newData)
             }}>
-            </MaterialButtonViolet>
+            </CupertinoButtonInfo>
+            
           </View>
+          
         </SafeAreaView>
+        </ScrollView>
       </View>
-    </ScrollView> 
+    
 
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#d8f6ff",
   },
   materialCheckboxWithLabel6: {
     height: 78,
@@ -199,11 +213,26 @@ const styles = StyleSheet.create({
   },
 
   textinputNumero: {
-    height: 100,
+    height: 200,
     margin: 12,
+    width:300,
     borderWidth: 1,
-    padding: 10,
+
+    //alignContent:"center",
+    //paddingTop:50,
+    alignSelf:"center"
   },
+  cupertinoButtonInfo: {
+    height: 61,
+    width: 325,
+    alignSelf:"center",
+    backgroundColor: "rgba(80,227,194,1)",
+    shadowColor: "rgba(155,155,155,1)",
+    shadowOffset: {
+        width: 3,
+        height: 3
+    },
+},
 });
 
 export default Untitled1;

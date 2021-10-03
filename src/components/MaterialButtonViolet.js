@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingRight: 16
   },
   voltar: {
-    color: "#fff",
+    color: "#0073ba",
     fontSize: 14
   }
 });

@@ -1,9 +1,10 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, TextInput, View,Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TextInput, View,Text, TouchableOpacity, Dimensions } from "react-native";
 import MaterialButtonViolet from "../components/MaterialButtonViolet";
 import { Picker } from '@react-native-community/picker';
 import {AuthContext} from '../Providers/AuthContext'
 import usuarios, { addUsu } from "../database/Usuarios";
+import CupertinoButtonInfo from "../components/CupertinoButtonInfo"
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function Untitled(props) {
@@ -30,23 +31,19 @@ console.log('teste:'+elmState)
     // <>
     <ScrollView>
     <View style={styles.container}>
-    <Text style={styles.stackedLabel1}>
-          Nome:*
-      </Text>
+    
      <TextInput
         //</View>placeholder={"Nome Completo"}
         placeholder="Insira seu nome completo"
         dataDetector="none"
         secureTextEntry={false}
         editable={true}
-        style={styles.inputStyle1}
+        style={styles.inputStyle2}
         Value={nome}
         onChangeText={nome => setNome(nome)}
         />
 
-      <Text style={styles.stackedLabel1}>
-          CPF:*
-      </Text>
+      
       <TextInput
         placeholder="Insira seu CPF"
         dataDetector="none"
@@ -54,6 +51,7 @@ console.log('teste:'+elmState)
         editable={true}
         style={styles.inputStyle1}
         Value={CPF}
+       // keyboardType="phone-pad"
         onChangeText={(e) => setCPF(e)}
         onBlur={()=>{
           testeCPF()
@@ -62,9 +60,7 @@ console.log('teste:'+elmState)
         </TextInput>
         {elmState ? <Text> CPF ja cadastrado</Text> : false }
 
-      <Text style={styles.stackedLabel1}>
-        E-mail:*
-      </Text>
+     
       <TextInput
         placeholder="Insira seu e-mail"
         dataDetector="none"
@@ -76,9 +72,7 @@ console.log('teste:'+elmState)
           >
         </TextInput>
 
-      <Text style={styles.stackedLabel1}>
-        Senha:*
-      </Text>
+    
       <TextInput
         placeholder="Insira sua senha"
         dataDetector="none"
@@ -87,12 +81,11 @@ console.log('teste:'+elmState)
         style={styles.inputStyle1}
         Value={senha}
         onChangeText={senha => setSenha(senha)}
+        secureTextEntry={true}
           >
         </TextInput>
 
-      <Text style={styles.stackedLabel1}>
-        Endereço:*
-      </Text>
+     
       <TextInput
         placeholder="Insira seu endereço"
         dataDetector="none"
@@ -104,9 +97,7 @@ console.log('teste:'+elmState)
             >
           </TextInput>
 
-      <Text style={styles.stackedLabel1}>
-        Celular:*
-      </Text>
+     
       <TextInput
         placeholder="Insira seu celular"
         dataDetector="none"
@@ -115,12 +106,11 @@ console.log('teste:'+elmState)
         style={styles.inputStyle1}
         Value={celular}
         onChangeText={celular => setCelular(celular)}
+        keyboardType="phone-pad"
           >
         </TextInput>
 
-      <Text style={styles.stackedLabel1}>
-        Data de Nascimento:*
-      </Text>
+     
       <TextInput
         placeholder="Insira sua data de nascimento"
         dataDetector="none"
@@ -129,6 +119,7 @@ console.log('teste:'+elmState)
         style={styles.inputStyle1}
         Value={nascimento}
         onChangeText={nascimento => setNascimento(nascimento)}
+        
           >
         </TextInput>
       
@@ -136,7 +127,7 @@ console.log('teste:'+elmState)
       <Picker
         selectedValue={selectedValue}
         style={{
-          //alignItems: "center",
+          //alignSelf: "center",
           justifyContent: "center",
           backgroundColor: "rgb(230,230,230)",
           borderRadius: 50,
@@ -164,14 +155,14 @@ console.log('teste:'+elmState)
       <View style={styles.rect}><Text style={{marginTop:55, textAlign:"center"}}>Clique para inserir a foto do seu documento</Text></View>
         </TouchableOpacity>
       <View style={styles.botaoVoltarRow}>
-        <MaterialButtonViolet style={styles.botaoVoltar} titulo='Voltar' onPress={() => {
+        {/* <MaterialButtonViolet style={styles.botaoVoltar} titulo='Voltar' onPress={() => {
           props.navigation.navigate(
             "Inicial"
           )
         }}>
-        </MaterialButtonViolet>
+        </MaterialButtonViolet> */}
 
-        <MaterialButtonViolet style={styles.botaoContinuar} titulo='Continuar' onPress={() => {
+        <CupertinoButtonInfo style={styles.cupertinoButtonInfo} title='Continuar' onPress={() => {
           {selectedValue == "Masculino" ? sexo='Masculino' : console.log('deuruim')}
           {selectedValue == "Feminino" ? sexo="Feminino" : console.log('deuruim')}
           {selectedValue == "Sem" ? sexo="Sem" : console.log('deuruim')}
@@ -197,7 +188,7 @@ console.log('teste:'+elmState)
             "Convenio"
           )
         }}>
-        </MaterialButtonViolet>
+        </CupertinoButtonInfo>
 
       </View>
     </View>
@@ -211,22 +202,27 @@ console.log('teste:'+elmState)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#d8f6ff"
+    //marginTop:40,
+    backgroundColor: "#d8f6ff",
+    //height: Dimensions.get("window").height,
+    //paddingTop:10,
   },
   botaoVoltar: {
     height: 36,
     width: 100
   },
-  botaoContinuar: {
-    height: 36,
-    width: 100,
-    marginLeft: 88
-  },
+  // botaoContinuar: {
+  //   height: 36,
+  //   width: 100,
+  //   marginLeft: 88
+  // },
   botaoVoltarRow: {
     flexDirection: "row",
     marginTop: 10,
-    marginLeft: 50,
-    marginRight: 37
+    //marginLeft: 50,
+    //marginRight: 37,
+    marginBottom:20,
+    alignSelf:"center",
   },
   materialStackedLabelTextbox1: {
     height: 60,
@@ -288,17 +284,23 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     marginLeft: 10
   },
-  inputStyle1: {
+   inputStyle2: {
     color: "#000",
     fontSize: 16,
-    alignSelf: "stretch",
+    alignSelf: "center",
+    backgroundColor:"#fff",
     flex: 1,
+    width:350,
+    marginTop:40,
+    padding:20,
     //lineHeight: 16,
     //paddingTop: 8,
     //paddingBottom: 8,
-    margin:10,
+    margin:5,
+    //borderBottomWidth:1,
     borderWidth: 1,
-    borderColor: "#000000",
+    borderColor: "gray",
+    borderRadius:80,
     shadowColor: "rgba(0,0,0,1)",
     // shadowOffset: {
     //   width: 3,
@@ -308,6 +310,44 @@ const styles = StyleSheet.create({
     // shadowOpacity: 1,
     // shadowRadius: 0
   },
+  inputStyle1: {
+    color: "#000",
+    fontSize: 16,
+    alignSelf: "center",
+    backgroundColor:"#fff",
+    flex: 1,
+    width:350,
+
+    padding:20,
+    //lineHeight: 16,
+    //paddingTop: 8,
+    //paddingBottom: 8,
+    margin:5,
+    //borderBottomWidth:1,
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius:80,
+    shadowColor: "rgba(0,0,0,1)",
+    // shadowOffset: {
+    //   width: 3,
+    //   height: 3
+    // },
+    // elevation: 5,
+    // shadowOpacity: 1,
+    // shadowRadius: 0
+  },
+  cupertinoButtonInfo: {
+    height: 50,
+    width: 250,
+    backgroundColor: "rgba(80,227,194,1)",
+    shadowColor: "rgba(155,155,155,1)",
+    shadowOffset: {
+        width: 3,
+        height: 3
+    },
+    
+},
+  
  
 });
 

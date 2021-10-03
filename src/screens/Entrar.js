@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet,SafeAreaView, View, Text, Dimensions } from "react-native";
+import { StyleSheet,SafeAreaView, View, Text, Dimensions,Image } from "react-native";
 import { CheckBox } from 'react-native-elements'
 //import {  SafeAreaView } from "react-native-safe-area-context";
 import EntrarInfo from '../components/EntrarInfo'
@@ -33,10 +33,10 @@ export default props => {
 
     return (
         // <View style={{flex:1}}>
-        <SafeAreaView style={{flex:1}}>
-            <ScrollView>
+        <View style={{flex:1}}>
+           
                 <View style={styles.container}>
-                    <View style={styles.margem}>
+                    {/* <View style={styles.margem}>
                         <BotaoVoltar
                             style={styles.botaoVoltar}
                             title='Voltar'
@@ -46,17 +46,22 @@ export default props => {
                                 )
                             }}
                         ></BotaoVoltar>
-                    </View>
+                    </View> */}
+                     <Image style= {styles.imgPhoto}  source={require('../../assets/marq.png')} />
+                    <View style={{marginTop:200}}>
                     <EntrarInfo info='E-mail *' place='Insira seu e-mail' onChangeText={(e)=>setEmail(e)}
                             onBlur={()=>testeEmail()}
                     ></EntrarInfo>
                     {elmState ? <Text> Email cadastrado</Text> : false }
+                    </View>
                     {/* <EntrarInfo info='E-mail *' place='Insira seu e-mail'></EntrarInfo> */}
                     {/* <EntrarInfo info='Senha *' place='Insira sua senha'></EntrarInfo> */}
-                    <EntrarInfo info='Senha *' place='Insira sua senha' onChangeText={(e)=>setSenha(e)} 
+                    <View style={{marginTop:-20}}>
+                    <EntrarInfo info='Senha *' place='Insira sua senha' onChangeText={(e)=>setSenha(e)} senhatexto={true}
                         onBlur={()=> testeSenha()}
                     ></EntrarInfo>     
                     {senhaTeste ? <Text> Senha cadastrado</Text> : false }
+                    </View>
 
                     <View style={styles.margem}>
                         <CheckBox
@@ -83,8 +88,8 @@ export default props => {
                     </View>
 
                 </View>
-            </ScrollView>
-        </SafeAreaView>
+            
+        </View>
         // </View>
         
     );
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
         fontSize: 21,
     },
     margem: {
-        marginBottom: 15
+        marginBottom: 100
     },
     cupertinoButtonInfo: {
         height: 61,
@@ -138,6 +143,18 @@ const styles = StyleSheet.create({
             width: 3,
             height: 3
         },
+    },
+    imgPhoto: {
+        borderRightWidth:1,
+        borderRadius:1,
+        marginTop:200,
+        marginBottom:-300,
+        paddingTop:20,
+        paddingBottom:20,
+        width: 400,
+        height: 200,
+        alignContent:"center",
+        alignSelf: "center"
     },
 
 });

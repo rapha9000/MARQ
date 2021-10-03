@@ -16,45 +16,58 @@ import { AuthContext } from '../Providers/AuthContext'
 
 
 export default props => {
-  const [valCon,setValCon]=useState([''])
-  const [numCon,setNumCon]=useState([''])
-  const [plano,setPlano]=useState([''])
-  const [convenio,setConvenio]=useState(['']);
-  const {CPF} = React.useContext(AuthContext) // importando variavel global
+  const [valCon, setValCon] = useState([''])
+  const [numCon, setNumCon] = useState([''])
+  const [plano, setPlano] = useState([''])
+  const [convenio, setConvenio] = useState(['']);
+  const { CPF } = React.useContext(AuthContext) // importando variavel global
   const [elmState, setElmState] = React.useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [marq, setMarq] = useState(false);
 
-  React.useEffect(() =>{
-    new usuarios().getByCpf(CPF).then((x)=>{
-        setElmState(x)
+  React.useEffect(() => {
+    new usuarios().getByCpf(CPF).then((x) => {
+      setElmState(x)
     });
-    },[]); //colocar cpf
+  }, []); //colocar cpf
+  function checaconv() {
+    if (convenio == "outros" || marq==true) {
 
-console.log('teste:'+convenio)
+      return (<EntrarInfo info='Se a opção "Outros" foi selecionada, qual é o convênio?' place='Insira seu Convênio' onChangeText={convenio=> {setConvenio(convenio);setMarq(true)}}></EntrarInfo>)
+    }
+    if (convenio == "bradesco" || convenio =="amil" || convenio =="sul" || convenio =="porto" || convenio =="nenhum") {
+      return (null)
+    }
+
+  }
+  function nenhum(){
+    if (convenio=="nenhum"){
+      return(<Text style={{ textAlign: "center", fontSize: 20, color: "red" }}>Nenhum convênio selecionado por favor clique no botão Cadastrar</Text>)
+    }
+    else{
+      return([ <EntrarInfo info='Plano *' place='Insira seu plano' onChangeText={plano => setPlano(plano)} ></EntrarInfo>,
+      <EntrarInfo info='Número do plano *' place='Insira o número do plano' onChangeText={numCon => setNumCon(numCon)} ></EntrarInfo>,
+      <EntrarInfo info='Valido até *' place='Insira a validade' onChangeText={valCon => setValCon(valCon)}></EntrarInfo>])
+    }
+  }
+
+
+  console.log('teste:' + convenio)
 
   return (
     <SafeAreaView>
       <View style={Vertical}>
-        <View style={styles.margem}>
-          <BotaoVoltar
-            style={styles.botaoVoltar}
-            title='Voltar'
-          ></BotaoVoltar>
-        </View>
-        
-        <View style={styles.margem}>
-          <Text style={styles.loremIpsum}>Convênio *</Text>
-        </View>
+
 
         <View style={styles.margem}>
           <Picker
-            selectedValue={selectedValue}
-            style={{ height: 50, width: 150 }}
-            onValueChange={(itemValue, itemIndex) => setConvenio(itemValue)}
+            selectedValue={convenio == "bradesco" || convenio =="amil" || convenio =="sul" || convenio =="porto" || convenio =="nenhum" || convenio =="" ? convenio : "outros"}
+            style={{ height: 50, width: 500 }}
+            onValueChange={(itemValue) => {setConvenio(itemValue);setMarq(false)}}
+
           >
             <Picker.Item label="Selecione o convenio desejado" value="" />
             <Picker.Item label="Bradesco" value="bradesco" />
-            <Picker.Item label="Porto Seguro" value="porto" />
             <Picker.Item label="Amil" value="amil" />
             <Picker.Item label="SulAmérica" value="sul" />
             <Picker.Item label="Porto Seguro" value="porto" />
@@ -62,24 +75,30 @@ console.log('teste:'+convenio)
             <Picker.Item label="Nenhum" value="nenhum" />
           </Picker>
         </View>
-        <View style={{flex:1,
-                        flexDirection:'column',
-                        // alignItems:'center',
-                        padding:10}}>
-          <EntrarInfo info='Se a opção "Outros" foi selecionada, qual é o convênio?' place='Insira seu Convênio' onChangeText={convenio=>setConvenio(convenio)}></EntrarInfo>
-          <EntrarInfo info='Plano *' place='Insira seu plano' onChangeText={plano=>setPlano(plano)} ></EntrarInfo>
-          <EntrarInfo info='Número do plano *' place='Insira o número do plano' onChangeText={numCon=>setNumCon(numCon)} ></EntrarInfo>
-          <EntrarInfo info='Valido até *' place='Insira a validade' onChangeText={valCon=>setValCon(valCon)}></EntrarInfo>
+        <View style={{
+          flex: 1,
+          flexDirection: 'column',
+          // alignItems:'center',
+          padding: 10,
+          marginTop: 80
+        }}>
+          {checaconv()}
+          {nenhum()}
+          {/* <EntrarInfo info='Se a opção "Outros" foi selecionada, qual é o convênio?' place='Insira seu Convênio' onChangeText={convenio=>setConvenio(convenio)}></EntrarInfo> */}
+         
+          
           <View style={styles.margem}>
             <CupertinoButtonInfo
               style={styles.cupertinoButtonInfo}
               title='Cadastrar'
-              onPress={ () => {var newData={convenio:convenio, plano: plano, numCon: numCon, valCon: valCon}
-                          new usuarios().updateUser(elmState,newData)
-                          props.navigation.navigate(
-              "Inicial"
-            )}
-                          }
+              onPress={() => {
+                var newData = { convenio: convenio, plano: plano, numCon: numCon, valCon: valCon }
+                new usuarios().updateUser(elmState, newData)
+                props.navigation.navigate(
+                  "Inicial"
+                )
+              }
+              }
             ></CupertinoButtonInfo>
           </View>
         </View>
@@ -97,7 +116,7 @@ const styles = StyleSheet.create({
   },
   margem: {
     marginBottom: 15,
-    alignItems:'center'
+    alignItems: 'center'
   },
   cupertinoButtonInfo: {
     height: 61,

@@ -55,7 +55,8 @@ export default props => {
 
   let hospitais = listaHosp.map(
     (elem) => {
-      return <HospitalInfo nome={elem.nome} estrelas={elem.estrelas} distancia={elem.distancia} tempo={elem.tempo} onPress={()=>{ 
+      return <View style={{marginTop:10}}>
+      <HospitalInfo nome={elem.nome} estrelas={elem.estrelas} distancia={elem.distancia} tempo={elem.tempo} onPress={()=>{ 
               // setHospital(elem.nome)
               // {hospital == elem.nome ? Hospital=elem.nome : console.log('deuruim')}
               Hospital=elem.nome
@@ -65,6 +66,7 @@ export default props => {
               var newData={hospital: Hospital}
                               new usuarios().updateUser(elmState,newData)
             }}></HospitalInfo>
+            </View>
     }
 
 
@@ -72,15 +74,15 @@ export default props => {
 
   return (
     <ScrollView>
-      <SafeAreaView style={{flex:1}}>
+      
         <View style={styles.container}>
-          <View style={styles.margem}>
+          {/* <View style={styles.margem}>
             <BotaoVoltar
               style={styles.botaoVoltar}
               title='Voltar'
             ></BotaoVoltar>
-          </View>
-          <View style={styles.margem}>
+          </View> */}
+          <View style={{marginTop:80}}>
             <CheckBox
               title='Deseja utilizar o convênio?'
               checked={checado}
@@ -88,13 +90,15 @@ export default props => {
               style={styles.materialCheckboxWithLabel}
             ></CheckBox>
           </View>
-          <View style={styles.margem}>
+          <View style={{marginTop:50}}>
             <Text style={styles.loremIpsum}>Selecione o hospital desejado:</Text>
-          </View>
+          </View >
+          <View style={{marginTop:0}}>
           {hospitais}
+          </View>
 
         </View>
-      </SafeAreaView>
+
     </ScrollView>
   );
 }
@@ -104,11 +108,12 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    //justifyContent: "space-between",
     alignItems: "center",
     alignContent: "stretch",
     height: Dimensions.get("window").height,
-    marginTop:20
+    //marginTop:80,
+    backgroundColor: "#d8f6ff",
     //borderWidth: 5
   },
 
