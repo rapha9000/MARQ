@@ -15,13 +15,29 @@ import CupertinoButtonInfo from '../components/CupertinoButtonInfo';
 export default props => {
 
     const [qrValue, setQrValue] = useState('');
-    const [elmState, setElmState] = useState('');
+    const [Nome, setNome] = useState('');
+    const [Endereco, setEndereco] = useState('');
+    const [Celular, setCelular] = useState('');
+    const [Cpf, setCpf] = useState('');
+    const [Convenio, setConvenio] = useState('');
+    const [Plano, setPlano] = useState('');
+    const [NumCon, setNumCon] = useState('');
+    const [Texto, setTexto] = useState('');
 
     function testeCPF() {
         new usuarios().getByCpf('284.728.334-32').then((x) => {
-            setElmState(x.data().nome)
+            setNome(x.data().nome)
+            setCelular(x.data().celular)
+            setCpf(x.data().cpf)
+            setConvenio(x.data().convenio)
+            setPlano(x.data().plano)
+            setNumCon(x.data().numCon)
+            setEndereco(x.data().endereco)
+            setTexto(Nome + "\n" + Celular + "\n" + Cpf)
         });
-    }; //colocar cpf
+        
+        
+    }; //colocar cpf 
 
 
     return (
@@ -46,7 +62,7 @@ export default props => {
                 <View style={styles.margem}>
                     <CupertinoButtonInfo
                         style={styles.cupertinoButtonInfo}
-                        onPress={() => setQrValue(elmState)}
+                        onPress={() => setQrValue(Texto)}
                         title="Gerar QR Code"
                     />
                 </View>
