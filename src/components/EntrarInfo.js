@@ -11,6 +11,7 @@ function EntrarInfo(props) {
                     placeholder={props.place}
                     Value={props.Value}
                     onChangeText={props.onChangeText}
+                    onBlur={props.onBlur}
                 ></TextInput>
             </View>
         </View>

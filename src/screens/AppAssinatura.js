@@ -1,36 +1,30 @@
-import React, { useRef } from "react";
+import React, { useRef, Component } from "react";
 import { StyleSheet, View, Button , Image,SafeAreaView} from "react-native";
 import SignatureScreen from "react-native-signature-canvas";
 import MaterialButtonViolet from "../components/MaterialButtonViolet"
 
-const Sign = (props,{ onOK }) => {
-  const ref = useRef();
 
-  const handleOK = (signature) => {
-    //console.log(signature);
-    //onOK(signature);
-  };
+export default class AppAssinatura extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      handlerClear:(()=>{ ref.current.clearSignature()}),
+      handleConfirm:(()=>{console.log("end");
+      ref.current.readSignature();}),
+      style:`.m-signature-pad--footer {display: none; margin: 0px;}`,
+    };
+    
+  }
 
-
-  const handleClear = () => {
-    ref.current.clearSignature();
-  };
-
-  const handleConfirm = () => {
-    console.log("end");
-    ref.current.readSignature();
-  };
-
-  const style = `.m-signature-pad--footer {display: none; margin: 0px;}`;
-
-
-  return (
-    <SafeAreaView style={styles.container}>
-      {/* <Image style= {styles.imgPhoto}  source={{ uri: `data:image/gif;base64,${imagem}` }} /> */}
-      <Image style= {styles.imgPhoto}  source={require('../../assets/images/Petronio.jpg')} />
-      <View style={styles.row2}>
+  render(){
+    return(
+      <SafeAreaView style={styles.container}>
+       {/* <Image style= {styles.imgPhoto}  source={{ uri: `data:image/gif;base64,${imagem}` }} />        */}
+       <Image style= {styles.imgPhoto}  source={require('../../assets/images/Petronio.jpg')} />
+       <View style={styles.row2}>
         <MaterialButtonViolet style={styles.botaoVoltar} titulo='Tirar Foto'
-          onPress={()=>props.navigation.navigate(
+          onPress={()=>
+          this.props.navigation.navigate(
             "Camera"
           )}
         />
@@ -39,11 +33,11 @@ const Sign = (props,{ onOK }) => {
       }
       </View>
       <SignatureScreen style={{paddingTop:5}} confirmText="Confirmar"   onOK={(img) => console.log(img)}
-  onEmpty={() => console.log("empty")} clearText="Apagar" imageType={"image/svg+xml"} descriptionText="Assine aqui" ref={ref} //onOK={handleOK} 
+  onEmpty={() => console.log("empty")} clearText="Apagar" imageType={"image/svg+xml"} descriptionText="Assine aqui"  //onOK={handleOK} ref={ref} 
    trimWhitespace="true" />
       <View style={styles.row}>
-        <MaterialButtonViolet style={styles.botaoVoltar} titulo='Entrar na Fila'
-          onPress={()=>props.navigation.navigate(
+        <MaterialButtonViolet style={styles.botaoVoltar1} titulo='Entrar na Fila'
+          onPress={()=>this.props.navigation.navigate(
               "Mapa"
             )}
         />
@@ -53,10 +47,66 @@ const Sign = (props,{ onOK }) => {
       </View>
       
     </SafeAreaView>
-  );
-};
 
-export default Sign;
+  )
+  }
+}
+
+
+// const Sign = (props,{ onOK }) => {
+//   const ref = useRef();
+
+//   const handleOK = (signature) => {
+//     //console.log(signature);
+//     //onOK(signature);
+//   };
+
+
+//   const handleClear = () => {
+//     ref.current.clearSignature();
+//   };
+
+//   const handleConfirm = () => {
+//     console.log("end");
+//     ref.current.readSignature();
+//   };
+
+//   const style = `.m-signature-pad--footer {display: none; margin: 0px;}`;
+
+
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       {/* <Image style= {styles.imgPhoto}  source={{ uri: `data:image/gif;base64,${imagem}` }} /> */}
+//       <Image style= {styles.imgPhoto}  source={require('../../assets/images/Petronio.jpg')} />
+//       <View style={styles.row2}>
+//         <MaterialButtonViolet style={styles.botaoVoltar} titulo='Tirar Foto'
+//           onPress={()=>props.navigation.navigate(
+//             "Camera"
+//           )}
+//         />
+//         {//<Button title="Clear" onPress={handleClear} />
+//         //<Button title="Confirm" onPress={handleConfirm} />
+//       }
+//       </View>
+//       <SignatureScreen style={{paddingTop:5}} confirmText="Confirmar"   onOK={(img) => console.log(img)}
+//   onEmpty={() => console.log("empty")} clearText="Apagar" imageType={"image/svg+xml"} descriptionText="Assine aqui" ref={ref} //onOK={handleOK} 
+//    trimWhitespace="true" />
+//       <View style={styles.row}>
+//         <MaterialButtonViolet style={styles.botaoVoltar} titulo='Entrar na Fila'
+//           onPress={()=>props.navigation.navigate(
+//               "Mapa"
+//             )}
+//         />
+//         {//<Button title="Clear" onPress={handleClear} />
+//         //<Button title="Confirm" onPress={handleConfirm} />
+//       }
+//       </View>
+      
+//     </SafeAreaView>
+//   );
+// };
+
+// export default Sign;
 
 const styles = StyleSheet.create({
   container: {
@@ -66,10 +116,19 @@ const styles = StyleSheet.create({
     alignContent: "flex-end",
     height: 10,
     padding: 10,
+    backgroundColor: "#d8f6ff", 
   },
   botaoVoltar: {
     height: 50,
     width: 150
+
+  },
+  botaoVoltar1: {
+    height: 50,
+    width: 150,
+    //paddingTop:10,
+    marginBottom:-20,
+
   },
   row: {
     display: "flex",
@@ -78,6 +137,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     paddingBottom:10,
+    marginTop:20
   },
   row2: {
     display: "flex",

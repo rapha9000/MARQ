@@ -25,6 +25,7 @@ export default props => {
   const [convenio,setConvenio]=useState(['']);
   const {CPF} = React.useContext(AuthContext) // importando variavel global
   const [elmState, setElmState] = React.useState([]);
+  
 
   React.useEffect(() =>{
     new usuarios().getByCpf(CPF).then((x)=>{
@@ -32,7 +33,7 @@ export default props => {
     });
     },[]); //colocar cpf
 
-
+    
   return (
     <SafeAreaView>
       <View style={Vertical}>
@@ -46,6 +47,7 @@ export default props => {
         <View style={styles.margem}>
           <Text style={styles.loremIpsum}>Convênio *</Text>
         </View>
+        <Text>{CPF} </Text>
 
         <View style={styles.margem}>
           <Picker

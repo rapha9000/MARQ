@@ -7,6 +7,7 @@ export default class Usuarios{
   constructor(){
     console.log(db.getDb())
     this.usuarios = db.getDb().collection('usuarios');
+    this.hospitais = db.getDb().collection('hospitais');
     this.addUsuario = this.addUsuario.bind(this);
     this.getAll = this.getAll.bind(this);
     this.getByCpf = this.getByCpf.bind(this);
@@ -43,6 +44,29 @@ async getByCpf(cpf){
   
   return elm;
 }
+async getByConvenio(convenio){
+  let elm = null;
+  await this.hospitais.collectionGroup('convenio').where("nome", "==", convenio).get().then( (query) => {
+    query.forEach( (el) => {
+      console.log('TESTE: '+el.data().nome)
+      elm = el;
+    } )
+  } )
+  
+  return elm;
+}
+async getByHospital(hospital){
+  let elm = null;
+  await this.hospitais.where("nome", "==", hospital).get().then( (query) => {
+    query.forEach( (el) => {
+      elm = el;
+    } )
+  } )
+  
+  return elm;
+}
+
+
 async getByEmail(email){
   let elm = null;
   await this.usuarios.where("email", "==", email).get().then( (query) => {

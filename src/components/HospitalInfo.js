@@ -6,8 +6,8 @@ import CupertinoButtonInfo from "./CupertinoButtonInfo";
 
 function HospitalInfo(props) {
   return (
-    <View style={styles.margem}>
-      <View style={styles.vertical}>
+    <View style={{}}>
+      <View style={{}}>
         <CupertinoButtonInfo
           style={styles.cupertinoButtonInfo}
           title={props.nome}
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     //width: '17.3vw'
   },
   margem:{
-    marginBottom: 15
+    //marginBottom: 15
   },
   horizontal: {
     display: "flex",

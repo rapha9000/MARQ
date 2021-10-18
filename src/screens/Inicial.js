@@ -5,17 +5,21 @@ import {
     View,
     SafeAreaView,
     SafeAreaViewBase, 
+    Image,
+    StatusBar
 } from 'react-native'
 import Botao from '../components/Botao'
 import MaterialButtonViolet from '../components/MaterialButtonViolet'
+import CupertinoButtonInfo from "../components/CupertinoButtonInfo"
 
 export default props=>{
     return(
         <View style = {styles.container}>
-                    <Text style={styles.Texto}>
-                        Fila Virtual!
-                    </Text>
-                    <View style={styles.componentes}>
+        <StatusBar
+        barStyle="dark-content" />
+        <Image style= {styles.imgPhoto}  source={require('../../assets/icon.png')} />
+        <View style={styles.componentes}>
+                    
                     {/*<Botao titulo='Cadastro' />
 
                     {/* </View> */}
@@ -53,7 +57,8 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor: "#d8f6ff"
     },
     componentes:{
         padding:10,
@@ -65,5 +70,28 @@ const styles = StyleSheet.create({
     },
     espaco:{
         padding:10
-    }
+    },
+    cupertinoButtonInfo: {
+        height: 61,
+        width: 325,
+        backgroundColor: "rgba(80,227,194,1)",
+        shadowColor: "rgba(155,155,155,1)",
+        shadowOffset: {
+            width: 3,
+            height: 3
+        },
+        textDecorationColor: "#0073ba"
+       
+       
+    },
+    imgPhoto: {
+        borderRightWidth:1,
+        borderRadius:1,
+        paddingTop:200,
+        paddingBottom:10,
+        width: 300,
+        height: 300,
+        alignContent:"center",
+        alignSelf: "center"
+    },
 })

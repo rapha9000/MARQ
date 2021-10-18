@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,Component } from "react";
 import {
     Text,
     View,
@@ -15,6 +15,122 @@ import * as FileSystem from "expo-file-system";
 // import { AuthContext } from '../Providers/AuthContext'
 import { EmailContext } from '../Providers/EmailContext'
 import usuarios from '../database/Usuarios'
+
+
+
+
+
+
+
+
+
+// export default class AppCamera extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//           hasPermission:null,
+//           type:Camera.Constants.Type.back,
+//           capturedPhoto:null,
+//           open:null,
+//           imagem:null,
+//           Email:this.context,
+//           elmState:'',
+//           usuariosState:'',
+//           teste:'',
+//           camRef:useRef(null)
+//         };
+//         this.useEffect=this.useEffect.bind(this)
+//         this.takePicture=this.takePicture.bind(this)
+//         this.useRef=this.useRef.bind(this)
+//       }
+
+//       componentDidMount(){
+//           this.useEffect()
+//           if (hasPermission === null) {
+//             return <View />;
+//         }
+//         if (hasPermission === false) {
+//             return <Text>No access to camera</Text>;
+//         }
+//       }
+//       useRef(){
+//           useRef(null)
+//       }
+
+//       useEffect(){
+//         new usuarios().getAll().then((x) => {
+//             this.setState({usuariosState:x});
+//         });
+//         new usuarios().getByEmail(Email).then((x)=>{
+//             this.setState({elmState:x})
+//         });
+//         (async () => {
+//             const { status } = await Camera.requestPermissionsAsync();
+//             this.setState({hasPermission:status === 'granted'});
+//         })();
+//       }
+
+      
+//     async takePicture() {
+//         if (camRef) {
+//             const data = await camRef.current.takePictureAsync({ base64: true, });
+//             this.setState({capturedPhoto:data.uri});
+//             this.setState({open:true});
+//             console.log(data.uri);
+//             this.setState({imagem:data.base64})
+//             //handleOK(data.Base64)
+//         }
+//     }
+
+//     render(){
+//         return(
+//             <SafeAreaView style={styles.container}>
+//              <Camera style={styles.camera} type={this.state.type} > {/*ref={useRef()}*/}
+//                  <View style={styles.contentButtons}>
+//                      <TouchableOpacity
+//                         style={styles.buttonFlip}
+//                         onPress={() => {
+//                             this.setState({type:
+//                                 this.state.type === Camera.Constants.Type.back
+//                                     ? Camera.Constants.Type.front
+//                                     : Camera.Constants.Type.back
+//                             });
+//                         }}
+//                     >
+//                         <FontAwesome name="exchange" size={23} color="red"></FontAwesome>
+//                     </TouchableOpacity>
+//                     <TouchableOpacity style={styles.buttonCamera} onPress={this.takePicture()}>
+//                         <FontAwesome name="camera" size={23} color="#fff"></FontAwesome>
+//                     </TouchableOpacity>
+//                 </View>
+//             </Camera>
+//             {this.state.capturedPhoto && (
+//                 <Modal animationType="slide" transparent={true} visible={this.state.open}>
+//                     <View style={styles.contentModal}>
+//                         <TouchableOpacity
+//                             style={styles.closeButton}
+//                             onPress={() => this.setState({open:false})}
+//                         >
+//                             <FontAwesome name="close" size={50} color="#000"></FontAwesome>
+//                         </TouchableOpacity>
+//                         <MaterialButtonViolet style={styles.Continuar} titulo="Continuar" onPress={()=>{this.props.navigation.navigate(
+//             "Assinatura"
+//           )
+//           var newData={imagem: this.state.imagem}
+//                         new usuarios().updateUser(this.state.elmState,newData)}
+//           } />
+//                         <Image style={styles.imgPhoto} source={{ uri: `data:image/gif;base64,${this.state.imagem}` }} />
+//                     </View>
+//                 </Modal>
+//             )}
+//         </SafeAreaView>
+//         )
+//     }
+// }
+
+
+
+
 
 
 export default function App(props) {
@@ -131,6 +247,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
+        
     },
     camera: {
         height: "100%",

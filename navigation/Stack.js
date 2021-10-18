@@ -14,6 +14,8 @@ import AppCamera from '../src/screens/AppCamera'
 //import TelaMapa from '../src/screens/TelaMapa'
 import AppMapa from '../src/screens/AppMapa'
 import TelaEsqueciASenha from '../src/screens/TelaEsqueciASenha'
+import TelaFila from '../src/screens/TelaFila'
+import TelaTriagem from '../src/screens/TelaTriagem'
 
 
 const Stack = createStackNavigator()
@@ -115,6 +117,22 @@ export default props => (
           <AppCamera {...props} voltar="Inicial">
             <AppCamera/>
           </AppCamera>
+        )}
+      </Stack.Screen>}
+
+      {<Stack.Screen name="Fila"  >
+        {props=> (
+          <TelaFila {...props} voltar="Inicial">
+            <TelaFila/>
+          </TelaFila>
+        )}
+      </Stack.Screen>}
+
+      {<Stack.Screen name="Triagem"  >
+        {props=> (
+          <TelaTriagem {...props} voltar="Inicial">
+            <TelaTriagem/>
+          </TelaTriagem>
         )}
       </Stack.Screen>}
       

@@ -9,7 +9,6 @@ import customStyle from '../../assets/dadsa/customStyle';
 
 export default class App extends Component {
   
-
 constructor() {
   //let [duracao, setDuracao] = useState(0);
   super();
@@ -57,7 +56,17 @@ render(){
   const origin = {latitude:-23.7113111, longitude: -46.5884565};
   const destination = { latitude: -23.6975654,longitude: -46.5884565,};
   let tempo = this.state.duracao
+  let lola = 1;
   //console.log(region)
+  // {
+     //  ()=>{
+      if(lola === 1){
+           setTimeout(
+            ()=>{
+        this.props.navigation.navigate('Fila')
+               }, 7000
+           )
+            }
   return (
     <View style={styles.container}>
       <StatusBar
@@ -92,9 +101,6 @@ render(){
             //console.log(`Duration: ${duracao} min.`)
           }}
           
-   
-           
-
         />
         
         <Marker
